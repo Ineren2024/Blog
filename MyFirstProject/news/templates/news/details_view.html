@@ -1,0 +1,20 @@
+{% extends "main/layout.html" %}
+
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block content %}
+     <div class='features'>
+          <h1>{{ article2.title }}</h1> {# через ключ вытягиваем тайтл с метода context_object_name, а тот с таблицы #}
+          <p>{{ article2.date }}</p>
+          <p>{{ article2.full_text }}</p>
+          {% if article2.photo %}
+          <p><img class="img-article-left" src="{{article2.photo.url}}"></p>
+          {% endif %}
+          <a href="{% url 'news-delete' article2.slug %}" class="btn btn-danger">Удалить</a>
+          <a href="{% url 'news-update' article2.slug %}" class="btn btn-danger">Редактировать</a>
+     </div>
+
+
+
+{% endblock %}
+

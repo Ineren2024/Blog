@@ -1,0 +1,21 @@
+{% extends "main/layout.html" %}
+
+{% block title %}Новости на сайте{% endblock %}
+
+{% block content %}
+     <div class='features'>
+          <h1>Новости на сайте</h1>
+          {% for el in news%}
+               <div class="alert alert-warning">
+               <h3>{{ el.title }}</h3>
+               <p>{{ el.anons }}</p>
+               <a href="{{ el.slug }}" class="btn btn=wqrning">Читать детальнее</a>
+               {# создаем кнопку с ссылкрй на выбираемую запись, el.id - в папке миграции создан id обозначающий номер записи #}
+               </div>
+
+          {% endfor %}
+
+     </div>
+
+
+{% endblock %}

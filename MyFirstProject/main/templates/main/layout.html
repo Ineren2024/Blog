@@ -1,0 +1,42 @@
+{% load static %}
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %} {% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <script src="https://kit.fontawesome.com/7dd8aa2553.js" crossorigin="anonymous"></script>
+
+</head>
+<body>
+     <aside>
+         <img src="{% static 'main/img/backiee-294792.jpg' %}" alt="logo">
+         <span class="logo">Jay</span>
+         <h3>Навигация</h3>
+         <ul>
+             <a href="{% url 'home' %}"><li><i class="fa-solid fa-house"></i> Главная</li></a>
+             <a href="{% url 'Laputa' %}"><li><i class="fa-brands fa-github"></i> Про нас</li></a>
+             <a href="{% url 'news_home' %}"><li><i class="fa-sharp fa-solid fa-tree"></i> Новости</li></a>
+             <a href=""><li><i class="fa-solid fa-hippo"></i> Контакты</li></a>
+             <a href="{% url 'create' %}"><li><button class="btn btn-info"><i class="fas fa-plus-circle"></i>Добавить запись</button></li></a>
+             {# <a href="{% url 'account' %}"><li><i class="fa-solid fa-house"></i> Войти</li></a> ЗАКОМЕНТИЛ!!!!!!#}
+             {% if user.is_authenticated %}
+                <li class="last"><a href="{% url 'users:profile' %}">{{user.username}}</a> | <a href="{% url 'users:logout' %}">выйти</a></li>
+             {% else %}
+                <li class="last"><a href="{% url 'users:login' %}">Войти</a> | <a href="{% url 'users:register' %}">Регистрация</a></li>
+             {% endif%}
+
+
+         </ul>
+     </aside>
+     <main>
+         {% block content %}
+         {% endblock %}
+     </main>
+</body>
+</html>
